@@ -1,0 +1,26 @@
+{
+  "name": "netra-full-stack",
+  "version": "1.0.0",
+  "description": "**Netra** is a full-stack e-commerce platform with secure authentication, role-based authorization, and an admin dashboard for product management. Users can browse products, manage carts, profiles, and orders, with all data stored securely. Payment integration and order tracking are planned for future releases.",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd backend && npm install && cd ../frontend && npm install",
+    "dev:server": "cd backend && npm run dev",
+    "dev:client": "cd frontend && npm start",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "build": "cd frontend && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manabika-15/Netra_App.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Manabika-15/Netra_App/issues"
+  },
+  "homepage": "https://github.com/Manabika-15/Netra_App#readme",
+  "dependencies": {
+    "concurrently": "^10.0.3"
+  }
+}
