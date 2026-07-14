@@ -3,15 +3,25 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
+import About from './pages/About'
+import Disclaimer from './pages/Disclaimer'
+import ReturnPolicy from './pages/ReturnPolicy'
 
 function App() {
   return(
     <Router>
-      <Navbar/>
-      <Routes>
-        <Route path="/" element={<Home/>} />
-      </Routes>
-      <Footer/>
+      <div className="min-h-screen flex flex-col">
+        <Navbar/>
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home/>} />
+            <Route path="/about" element={<About/>} />
+            <Route path="/disclaimer" element={<Disclaimer/>} />
+            <Route path="/return" element={<ReturnPolicy/>} />
+          </Routes>
+        </main>
+        <Footer/>
+      </div>
     </Router>
   )
 }

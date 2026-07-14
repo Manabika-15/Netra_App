@@ -24,7 +24,7 @@ const Navbar = () => {
         <ul className='navbar-links'>
             <li><Link to="/shop">Shop</Link></li>
             <li><Link to="/cart">Cart ({cartItems.length}) </Link></li>
-            (user ? (
+            {user ? (
                 <>
                 <li><Link to='/profile'>Hi, {user.name}</Link></li>
                 {user.role === 'admin' && <li><Link to="/admin">Admin</Link></li>}
@@ -32,7 +32,7 @@ const Navbar = () => {
                 </>
             ) : (
                 <li><Link to="/login">Login</Link></li>
-            ))
+            )}
         </ul>
     </nav>
   );

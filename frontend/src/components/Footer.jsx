@@ -6,6 +6,7 @@ const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer-content">
+                <p className="footer-brand">Netra</p>
                  <ul className="footer-links">
                     <li><Link to="/about">About Us</Link></li>
                     <li><Link to="/return">Return Policy</Link></li>

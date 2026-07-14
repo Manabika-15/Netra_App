@@ -8,12 +8,13 @@ const ProductCard = ({ product }) => {
       <img
         src={product.imageUrl}
         alt={product.name}
-        className="product-image"
+        className="product-card__image"
       />
-      <div className="product-info">
-        <h3 className="product-name">{product.name}</h3>
-        <p className="product-price">{product.price.toFixed(2)}</p>
-        <Link to={`/products/${product._id}`} className="view-details-btn">
+      <div className="product-card__content">
+        <h3 className="product-card__title">{product.name}</h3>
+        <p className="product-card__description">{product.description}</p>
+        <p className="product-card__price">₹{Number(product.price).toFixed(2)}</p>
+        <Link to={`/products/${product._id}`} className="product-card__button">
           View Details
         </Link>
       </div>
