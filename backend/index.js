@@ -14,7 +14,7 @@ connectDB()
 const app = express()
 app.use(cors(
     {
-        origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+        origin: ['http://localhost:3000', 'http://127.0.0.1:3000', process.env.FRONTEND_URL],
         credentials: true
     }
 ))
@@ -30,6 +30,17 @@ app.use('/api/products', productRoute)
 app.use('/api/orders', orderRoute)
 app.use('/api/payment', paymentRoute)
 app.use('/api/analytics', analyticsRoute)
+
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static(path.join(__dirname, '../frontend/build')))
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'))
+    })
+} else {
+    app.get('/', (req, res) => {
+        res.send("Netra API is running in Development Mode...")
+    })
+}
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
