@@ -9,6 +9,10 @@ import ReturnPolicy from './pages/ReturnPolicy'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import ProductDetail from './pages/ProductDetail'
+import Cart from './pages/Cart'
+import Shop from './pages/Shop'
+import Checkout from './pages/Checkout'
+import OrderSuccess from './pages/OrderSuccess'
 
 function App() {
   return(
@@ -24,6 +28,10 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
             <Route path="/products/:id" element={<ProductDetail/>} />
+            <Route path="/cart" element={<Cart/>} />
+            <Route path="/shop" element={<Shop/>} />
+            <Route path='/checkout' element={<Checkout/>} />
+            <Route path='/ordersuccess' element={<OrderSuccess/>} />
           </Routes>
         </main>
         <Footer/>
