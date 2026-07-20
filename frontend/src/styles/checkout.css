@@ -134,6 +134,38 @@
   transform: none;
 }
 
+.student-payment-btn {
+  min-width: 10.5rem;
+  padding: 0.9rem 1.1rem;
+  color: #bae6fd;
+  font-weight: 800;
+  background: rgba(56, 189, 248, 0.09);
+  border: 1px solid rgba(125, 211, 252, 0.28);
+  border-radius: 0.75rem;
+}
+
+.student-payment-btn:hover {
+  color: #ecfeff;
+  background: rgba(56, 189, 248, 0.18);
+}
+
+.student-payment-btn:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.student-payment-btn:disabled:hover {
+  transform: none;
+}
+
+.student-payment-note {
+  grid-column: 1 / -1;
+  margin: -0.3rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
 .payment-error {
   grid-column: 1 / -1;
   margin: 0;
@@ -173,6 +205,10 @@
   }
 
   .checkout-summary .btn {
+    width: 100%;
+  }
+
+  .student-payment-btn {
     width: 100%;
   }
 }

@@ -11,20 +11,24 @@ const Register = () => {
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
+        e.preventDefault()
         try {
             const res = await fetch ('/api/user/register', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({name, email, password})
             })
             const data = await res.json();
             if(res.ok) {
-                alert("Registration successful! Please check your email for the OTP")
                 login(data)
-                navigate('/')
+                alert('Your account has been created!')
+                navigate('/profile')
             } else {
                 alert(data.message)
             }
         } catch (error) {
             console.error(error)
+            alert('Unable to create your account. Please try again.')
         }
     }
   return (

@@ -12,12 +12,40 @@ const Checkout = () => {
     const navigate = useNavigate()
 
     const [address, setAddress] = useState({
-        fullName: '', street: '', city: '', postalCode: '', county: ''
+        fullName: '', street: '', city: '', postalCode: '', country: ''
     })
     const [paymentError, setPaymentError] = useState('')
     const [isProcessing, setIsProcessing] = useState(false)
 
     const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+
+    const saveOrder = async (paymentId) => {
+        const saveOrderRes = await fetch('/api/orders', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`
+            },
+            body: JSON.stringify({
+                items: cartItems.map(({ productId, qty, price }) => ({
+                    productId,
+                    quantity: qty,
+                    price
+                })),
+                totalAmount: totalPrice,
+                address,
+                paymentId
+            })
+        })
+
+        if (!saveOrderRes.ok) {
+            const data = await saveOrderRes.json().catch(() => ({}))
+            throw new Error(data.message || 'Order could not be saved.')
+        }
+
+        dispatch(clearCart())
+        navigate('/ordersuccess')
+    }
 
     const handlePayment = async () => {
         setPaymentError('')
@@ -60,23 +88,7 @@ const Checkout = () => {
                         })
                         if (!verifyRes.ok) throw new Error('Payment verification failed.')
 
-                        const saveOrderRes = await fetch('/api/orders', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                Authorization: `Bearer ${user.token}`
-                            },
-                            body: JSON.stringify({
-                                items: cartItems,
-                                totalAmount: totalPrice,
-                                address,
-                                paymentId: response.razorpay_payment_id
-                            })
-                        })
-
-                        if (!saveOrderRes.ok) throw new Error('Order saving failed.')
-                        dispatch(clearCart())
-                        navigate('/ordersuccess')
+                        await saveOrder(response.razorpay_payment_id)
                     } catch (error) {
                         setPaymentError(error.message || 'We could not complete your payment.')
                         setIsProcessing(false)
@@ -105,24 +117,28 @@ const Checkout = () => {
     }
 
     const bypassPayment = async () => {
-        const saveOrderRes = await fetch('/api/orders', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${user.token}`
-            },
-            body: JSON.stringify({
-                items: cartItems,
-                totalAmount: totalPrice,
-                address,
-                paymentId: 'bypass_txn' + Date.now()
-            })
-        })
-        if(saveOrderRes.ok) {
-            dispatch(clearCart())
-            navigate('/ordersuccess')
-        } else {
-            throw new Error('Test order could not be saved.')
+        await saveOrder(`student_test_${Date.now()}`)
+    }
+
+    const handleStudentPayment = async () => {
+        if (!cartItems.length) {
+            setPaymentError('Your cart is empty. Add an item before placing a test order.')
+            return
+        }
+        if (!user) {
+            window.alert('Please login first to continue with payment.')
+            navigate('/login')
+            return
+        }
+
+        setPaymentError('')
+        setIsProcessing(true)
+        try {
+            await bypassPayment()
+        } catch (error) {
+            console.error(error)
+            setPaymentError(error.message || 'The test order could not be created.')
+            setIsProcessing(false)
         }
     }
 
@@ -156,7 +172,11 @@ const Checkout = () => {
             <button type="submit" className="btn" disabled={isProcessing}>
               {isProcessing ? 'Processing...' : 'Pay Now'}
             </button>
+            <button type="button" className="student-payment-btn" onClick={handleStudentPayment} disabled={isProcessing}>
+              Student Test Payment
+            </button>
           </div>
+          <p className="student-payment-note">Test mode only: no card is charged. It creates an order for your signed-in account.</p>
           {paymentError && <p className="payment-error" role="alert">{paymentError}</p>}
         </form>
       </div>

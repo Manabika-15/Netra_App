@@ -1,0 +1,215 @@
+.dashboard-container {
+  width: min(100% - 2.5rem, 74rem);
+  min-height: 58vh;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 4rem) 0 4.5rem;
+}
+
+.container-style {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.92), rgba(10, 17, 32, 0.8));
+  border: 1px solid var(--border-soft);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-glow), inset 0 1px 0 rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(14px);
+}
+
+.container-style::after {
+  position: absolute;
+  inset: -9rem -5rem auto auto;
+  width: 18rem;
+  height: 18rem;
+  content: "";
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.16), transparent 68%);
+  pointer-events: none;
+}
+
+.logo-container,
+.admin-dashboard {
+  position: relative;
+  z-index: 1;
+}
+
+.logo-container {
+  width: 3.1rem;
+  height: 3.1rem;
+  padding: 0.45rem;
+  object-fit: contain;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(125, 211, 252, 0.24);
+  border-radius: 0.9rem;
+}
+
+.admin-dashboard {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+}
+
+.welcome {
+  margin: 1.3rem 0 1.75rem;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.welcome .name {
+  color: var(--text-primary);
+  font-weight: 800;
+}
+
+.contents {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.cardStyle,
+.admin-controls,
+.loading {
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.88), rgba(10, 17, 32, 0.72));
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-glow), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+}
+
+.cardStyle {
+  position: relative;
+  min-height: 9.5rem;
+  padding: 1.35rem;
+  overflow: hidden;
+  border-radius: 1rem;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cardStyle::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0.25rem;
+  content: "";
+  background: linear-gradient(var(--accent), var(--accent-violet));
+}
+
+.cardStyle:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 24px 48px rgba(2, 6, 23, 0.52), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.cardStyle h4 {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.orders,
+.products {
+  margin-top: 1rem;
+  color: var(--text-primary);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.products {
+  color: #c4b5fd;
+}
+
+.loading {
+  margin-top: 1rem;
+  padding: 1.2rem 1.35rem;
+  color: var(--text-soft);
+  border-radius: 1rem;
+}
+
+.admin-controls {
+  margin-top: clamp(1.5rem, 4vw, 2.25rem);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  border-radius: 1.15rem;
+}
+
+.controls-title {
+  margin: 0 0 1.15rem;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.controls .btn {
+  min-height: 3rem;
+  padding: 0.75rem 1rem;
+  color: #e0f2fe;
+  font-weight: 800;
+  background: rgba(56, 189, 248, 0.09);
+  border: 1px solid rgba(125, 211, 252, 0.23);
+  border-radius: 0.75rem;
+}
+
+.controls .btn:hover {
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  border-color: rgba(125, 211, 252, 0.38);
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.25);
+}
+
+.controls .btn:focus-visible {
+  outline: 3px solid rgba(56, 189, 248, 0.38);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .dashboard-container {
+    width: min(100% - 2rem, 42rem);
+    padding-top: 1.75rem;
+  }
+
+  .contents {
+    grid-template-columns: 1fr;
+  }
+
+  .cardStyle {
+    min-height: auto;
+  }
+
+  .controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-container {
+    width: min(100% - 1.5rem, 42rem);
+  }
+
+  .container-style,
+  .admin-controls {
+    padding: 1.1rem;
+    border-radius: 1rem;
+  }
+
+  .logo-container {
+    width: 2.7rem;
+    height: 2.7rem;
+  }
+
+  .controls {
+    grid-template-columns: 1fr;
+  }
+}

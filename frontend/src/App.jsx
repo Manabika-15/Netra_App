@@ -13,6 +13,13 @@ import Cart from './pages/Cart'
 import Shop from './pages/Shop'
 import Checkout from './pages/Checkout'
 import OrderSuccess from './pages/OrderSuccess'
+import Profile from './pages/Profile'
+import AdminDashboard from './admin/AdminDashboard'
+import AdminOrders from './admin/AdminOrders'
+import AdminProducts from './admin/AdminProducts'
+import AdminUsers from './admin/AdminUsers'
+import AddProduct from './admin/AddProduct'
+import EditProduct from './admin/EditProducts'
 
 function App() {
   return(
@@ -32,6 +39,13 @@ function App() {
             <Route path="/shop" element={<Shop/>} />
             <Route path='/checkout' element={<Checkout/>} />
             <Route path='/ordersuccess' element={<OrderSuccess/>} />
+            <Route path='/profile' element={<Profile/>} />
+            <Route path='/admin' element={<AdminDashboard/>} />
+            <Route path='/admin/add-product' element={<AddProduct/>} />
+            <Route path='/admin/products' element={<AdminProducts/>} />
+            <Route path='/admin/edit-product/:id' element={<EditProduct/>} />
+            <Route path='/admin/orders' element={<AdminOrders/>} />
+            <Route path='/admin/users' element={<AdminUsers/>} />
           </Routes>
         </main>
         <Footer/>

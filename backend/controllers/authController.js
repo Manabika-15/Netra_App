@@ -18,7 +18,7 @@ const registerUser = async (req, res) => {
         const salt = await bcrypt.genSalt(10) // Hash the password
         const hashedPassword = await bcrypt.hash(password, salt)
 
-        const user = User.create({name, email, password: hashedPassword})
+        const user = await User.create({name, email, password: hashedPassword})
         if(user){
             const otp = Math.floor(100000 + Math.random() * 900000).toString()
 
