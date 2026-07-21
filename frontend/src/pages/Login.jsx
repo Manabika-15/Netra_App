@@ -21,6 +21,8 @@ const Login = () => {
             if(res.ok){
                 login(data)
                 navigate('/')
+            } else if(data.verificationRequired){
+                navigate('/verify-email', { state: { email: data.email, message: data.message } })
             } else {
                 alert(data.message)
             }

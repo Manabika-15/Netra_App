@@ -20,9 +20,13 @@ const Register = () => {
             })
             const data = await res.json();
             if(res.ok) {
-                login(data)
-                alert('Your account has been created!')
-                navigate('/profile')
+                if (data.verificationRequired) {
+                    navigate('/verify-email', { state: { email: data.email, message: data.message } })
+                } else {
+                    login(data)
+                    alert('Your account has been created!')
+                    navigate('/profile')
+                }
             } else {
                 alert(data.message)
             }

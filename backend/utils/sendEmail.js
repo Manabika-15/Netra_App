@@ -16,8 +16,10 @@ const sendEmail = async (to, subject, text) => {
             text
         }
         await transporter.sendMail(mailOptions)
+        return true
     } catch (error) {
         console.error(`Error in sending email: ${error}`)
+        return false
     }
 }
 

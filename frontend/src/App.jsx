@@ -8,6 +8,7 @@ import Disclaimer from './pages/Disclaimer'
 import ReturnPolicy from './pages/ReturnPolicy'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import VerifyEmail from './pages/VerifyEmail'
 import ProductDetail from './pages/ProductDetail'
 import Cart from './pages/Cart'
 import Shop from './pages/Shop'
@@ -34,6 +35,7 @@ function App() {
             <Route path="/return" element={<ReturnPolicy/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
+            <Route path="/verify-email" element={<VerifyEmail/>} />
             <Route path="/products/:id" element={<ProductDetail/>} />
             <Route path="/cart" element={<Cart/>} />
             <Route path="/shop" element={<Shop/>} />

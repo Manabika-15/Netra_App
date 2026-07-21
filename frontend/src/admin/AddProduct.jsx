@@ -10,7 +10,7 @@ const AddProduct = () => {
         name: '', description: '', price: '', category: '', stock: ''
     })
     const [image, setImage] = useState(null)
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
 
     if(!user || user.role !== 'admin'){
         navigate('/')
@@ -18,7 +18,7 @@ const AddProduct = () => {
     }
 
     const handleSubmit = async (e) => {
-        e.prevenDefault()
+        e.preventDefault()
         if(!image) return alert('Please select an image')
         
         setLoading(true)
@@ -36,13 +36,13 @@ const AddProduct = () => {
                 headers: {Authorization: `Bearer ${user.token}`},
                 body: data
             })
-            const data = await res.json()
+            const responseData = await res.json()
 
             if(res.ok){
                 alert("Product created successfully with Cloudinary Image URL!")
                 navigate('/shop')
             } else {
-                alert(data.message || "Error creating product")
+                alert(responseData.message || "Error creating product")
             }
         } catch (error) {
             console.error(error)

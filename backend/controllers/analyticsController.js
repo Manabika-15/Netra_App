@@ -5,7 +5,7 @@ const User = require("../model/user")
 
 const getAdminStats = async (req, res) => {
     try {
-        const totalUsers = await User.countDocuments({role: 'user'})
+        const totalUsers = await User.countDocuments({})
         const totalProducts = await Product.countDocuments({})
         const totalOrders = await Order.countDocuments({})
 

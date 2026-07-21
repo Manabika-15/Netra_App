@@ -52,17 +52,17 @@ const updateProduct = async (req, res) => {
         const {name, description, price, category, stock} = req.body;
         const product = await Product.findById(req.params.id)
         if(product){
-            product.name = name || product.name;
-            product.description = description || product.description;
-            product.price = price || product.price;
-            product.category = category || product.category;
-            product.stock = stock || product.stock;
+            product.name = name ?? product.name;
+            product.description = description ?? product.description;
+            product.price = price ?? product.price;
+            product.category = category ?? product.category;
+            product.stock = stock ?? product.stock;
             if(req.file){
                 const result = await cloudinary.uploader.upload(req.file.path)
                 // console.log(result)
                 product.imageUrl = result.secure_url
             }
-            const updatedProduct = await Product.save()
+            const updatedProduct = await product.save()
             res.json(updatedProduct)
         } else {
             res.status(404).json({message: "Product not found!"})

@@ -8,6 +8,8 @@ const AdminDashboard = () => {
     const navigate = useNavigate()
     const [stats, setStats] = useState(null)
 
+    
+
     useEffect(() => {
         if(!user || user.role !== 'admin'){
             navigate('/')
@@ -19,16 +21,18 @@ const AdminDashboard = () => {
                     headers: {Authorization: `Bearer ${user.token}`}
                 })
                 const data = await res.json()
+                console.log('Analytics response:', res.status, data)
                 if(res.ok) {
                     setStats(data)
                 } else {
+                    console.error('Analytics fetch failed:', data.message)
                     if(res.status === 401) {
                         navigate('/login')
                     } 
                     setStats({totalOrders: 0, totalProducts: 0, totalUsers: 0, totalRevenue: 0})
                 }
             } catch (error) {
-                console.error(error)
+                console.error('Analytics error:', error)
             } 
         }
         fetchStats();
@@ -40,7 +44,7 @@ const AdminDashboard = () => {
             <img src="/favicon.png" alt="Logo" className='logo-container' />
             <h2 className='admin-dashboard'>Admin Dashboard</h2>
         </div>
-        <p className='welcome'>Welcome back, <span className='name'>{user.name}</span></p>
+        <p className='welcome'>Welcome back, <span className='name'>{user?.name}</span></p>
 
         {stats ? (
             <div className='contents'>
@@ -55,6 +59,10 @@ const AdminDashboard = () => {
             <div className='cardStyle'>
                 <h4>Total Users</h4>
                 <div className='orders'>{stats.totalUsers}</div>
+            </div>
+            <div className='cardStyle'>
+                <h4>Total Revenue</h4>
+                <div className='orders'>{stats.totalRevenue}</div>
             </div>
             </div>
         ) : (

@@ -40,10 +40,12 @@ const Profile = () => {
 
     const handleLogout = () => {
         logout()
-        navigate('/login')
+        navigate('/')
     }
 
     if(!user) return null;
+
+  const userRole = user?.role ? user.role.toUpperCase() : 'USER'
 
   return (
     <div className='profile-container'>
@@ -52,7 +54,7 @@ const Profile = () => {
                 <h2 className='my-profile'>My Profile</h2>
                 <p className='name'><strong>Name:</strong> {user.name}</p>
                 <p className='email'><strong>Email:</strong> {user.email}</p>
-                <span className='badge'>Account Type: {user.role.toUpperCase()}</span>
+                <span className='badge'>Account Type: {userRole}</span>
             </div>
             <button onClick={handleLogout} className='btn'>Logout</button>
         </div>
@@ -72,7 +74,7 @@ const Profile = () => {
                         <div>
                             <p className='order-id'>Order ID: <span className='oid'>{order._id}</span></p>
                             <p className='place-on'>Placed On: <span className='order-place'>{new Date(order.createdAt).toLocaleDateString()}</span></p>
-                            <p className='total'>Total: <strong className='total-price'>Rs.{order.totalAmount.toFixed(2)}</strong></p>
+                            <p className='total'>Total: <strong className='total-price'>₹{order.totalAmount.toFixed(2)}</strong></p>
                         </div>
                         <div>
                             <span style={{ 

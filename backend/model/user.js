@@ -22,7 +22,15 @@ const userSchema = new mongoose.Schema({
     verified: {
         type: Boolean,
         default: false,
+    },
+    verificationOtpHash: {
+        type: String,
+        select: false,
+    },
+    verificationOtpExpiresAt: {
+        type: Date,
+        select: false,
     }
-})
+}, { timestamps: true })
 
 module.exports = mongoose.model("User", userSchema)

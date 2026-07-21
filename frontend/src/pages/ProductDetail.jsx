@@ -58,7 +58,7 @@ const ProductDetail = () => {
             </div>
             <div className='product-info'>
                 <h2>{product.name}</h2>
-                <p className='product-price'>{formattedPrice === 'Price unavailable' ? formattedPrice : `Rs.${formattedPrice}`}</p>
+                <p className='product-price'>{formattedPrice === 'Price unavailable' ? formattedPrice : `₹${formattedPrice}`}</p>
                 <div className='product-desc'>
                     <h4 className='desc'>Product Description</h4>
                     <p className='des'>{product.description}</p>

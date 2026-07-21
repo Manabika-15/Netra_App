@@ -1,6 +1,7 @@
 const express = require("express")
 const cors = require("cors")
 const dotenv = require("dotenv")
+const path = require("path")
 const connectDB = require("./config/db")
 const userRoute = require("./routes/authRoutes")
 const productRoute = require("./routes/productRoutes")
@@ -8,7 +9,8 @@ const orderRoute = require("./routes/orderRoutes")
 const paymentRoute = require("./routes/paymentRoutes")
 const analyticsRoute = require("./routes/analyticsRoutes")
 
-dotenv.config()
+// Load environment variables from backend/.env to avoid cwd issues
+dotenv.config({ path: path.join(__dirname, '.env') })
 connectDB()
 
 const app = express()

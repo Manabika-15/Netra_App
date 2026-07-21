@@ -54,6 +54,10 @@ const getOrders = async (req, res) => {
 const updateOrderStatus = async (req, res) => {
     try {
         const {status} = req.body;
+        const allowedStatuses = ['pending', 'shipped', 'delivered']
+        if (!allowedStatuses.includes(status)) {
+            return res.status(400).json({message: "Invalid order status"})
+        }
         const order = await Order.findById(req.params.id)
         if(order){
             order.status = status
