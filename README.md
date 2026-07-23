@@ -123,4 +123,3 @@ Admin uploads product images → Cloudinary stores them → a secure URL is save
 ## 👩‍💻 Built By
 
 Manabika Das
->>>>>>> e75747c (final push)
