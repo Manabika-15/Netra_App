@@ -118,21 +118,4 @@ Admin uploads product images → Cloudinary stores them → a secure URL is save
 ## 👩‍💻 Built By
 
 Manabika Das
-
-**Key Learnings & Notes**
-- **Cloudinary integration**: Learned how to upload files from the frontend/admin to Cloudinary, store returned URLs, and serve them safely in the UI.
-- **Razorpay integration**: Implemented client-server payment flow, handling payment creation and verification, and persisting payment/order state.
-- **Redux**: Spent time studying Redux docs and using Redux Toolkit to manage cart state, persist cart items, and calculate derived state (cart totals) efficiently.
-- **Auth & Security**: Implemented JWT-based auth, password hashing with bcrypt, protected routes and admin middleware.
-- **Email verification**: Built an OTP flow using Nodemailer and hashed stored OTPs for security.
-
-**Future Improvements**
-- Add pagination and search to product listing.
-- Improve test coverage (unit and integration tests).
-- Add role-based UI components and audit logging for admin actions.
-- Add CI/CD and Docker-based deployment.
-
-
-**Credits**
-- Built by: Manabika
 >>>>>>> e75747c (final push)
