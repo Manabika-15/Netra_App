@@ -19,9 +19,8 @@ const Register = () => {
                 body: JSON.stringify({name, email, password})
             })
             const data = await res.json();
-            if(data.verificationRequired) {
-                navigate('/verify-email', { state: { email: data.email, message: data.message } })
-            } else if(res.ok) {
+            
+            if(res.ok) {
                 login(data)
                 alert('Your account has been created!')
                 navigate('/profile')
