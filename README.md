@@ -2,6 +2,11 @@
 
 > NETRA is a full-stack e-commerce web application for eyewear that provides a smooth shopping experience for sunglasses, eyeglasses, contact lenses, and accessories. It includes secure authentication, payments, an admin dashboard, analytics, and more.
 
+## 🔗 Live Demo
+
+👉 **Live Website:** https://netra-app-tps8.onrender.com
+
+
 ## 🚀 Project Overview
 
 NETRA is a complete MERN Stack e-commerce platform designed for eyewear shopping.
@@ -118,4 +123,3 @@ Admin uploads product images → Cloudinary stores them → a secure URL is save
 ## 👩‍💻 Built By
 
 Manabika Das
->>>>>>> e75747c (final push)
