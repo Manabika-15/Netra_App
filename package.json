@@ -4,22 +4,12 @@
   "description": "**Netra** is a full-stack e-commerce platform with secure authentication, role-based authorization, and an admin dashboard for product management. Users can browse products, manage carts, profiles, and orders, with all data stored securely. Payment integration and order tracking are planned for future releases.",
   "main": "index.js",
   "scripts": {
-    "install": "cd backend && npm install && cd ../frontend && npm install && cd ..",
-
-    "start": "concurrently \"npm run start:server\" \"npm run start:client\"",
-
-    "start:server": "npm --prefix backend start",
-
-    "start:client": "npm --prefix frontend start",
-
+    "install": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "postinstall": "npm --prefix backend install && npm --prefix frontend install && npm --prefix frontend run build",
+    "dev:server": "cd backend && npm run dev",
+    "dev:client": "cd frontend && npm start",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-
-    "dev:server": "npm --prefix backend run dev",
-
-    "dev:client": "npm --prefix frontend start",
-
     "build": "cd frontend && npm install && npm run build",
-
     "seed": "npm --prefix backend run seed"
   },
   "repository": {
