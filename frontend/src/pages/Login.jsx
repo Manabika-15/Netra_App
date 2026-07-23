@@ -18,13 +18,13 @@ const Login = () => {
                 body: JSON.stringify({email, password})
             })
             const data = await res.json()
-            if(res.ok){
+            if(data.verificationRequired){
+                navigate('/verify-email', { state: { email: data.email, message: data.message } })
+            } else if(res.ok){
                 login(data)
                 navigate('/')
-            } else if(data.verificationRequired){
-                navigate('/verify-email', { state: { email: data.email, message: data.message } })
             } else {
-                alert(data.message)
+                alert(data.message || 'Login failed. Please try again.')
             }
         } catch (error) {
             console.error(error)
