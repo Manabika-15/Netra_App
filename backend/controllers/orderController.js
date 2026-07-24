@@ -1,5 +1,5 @@
 const Order = require("../model/order")
-const sendEmail = require("../utils/sendEmail")
+// const sendEmail = require("../utils/sendEmail")
 
 const createOrder = async (req, res) => {
     try {
@@ -15,27 +15,10 @@ const createOrder = async (req, res) => {
                 paymentId
             })
             await order.save();
-
-try {
-    const message = `Dear ${req.user.name},
-
-Thank you for your order!
-
-Order ID: ${order._id}
-Total Amount: ${totalAmount}
-
-Best regards,
-Netra Team`;
-
-    await sendEmail(req.user.email, "Order created!", message);
-} catch (err) {
-    console.error("Email failed:", err);
-}
-
-res.status(201).json({
-    message: "Order created successfully",
-    order
-});
+            res.status(201).json({
+                message: "Order created successfully",
+                order
+            });
         }
     } catch (error) {
         console.error('Error creating order:', error)
