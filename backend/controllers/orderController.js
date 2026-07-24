@@ -15,17 +15,27 @@ const createOrder = async (req, res) => {
                 paymentId
             })
             await order.save();
-            const message = `Dear ${req.user.name}, \n\nThank you for your order!
-            Your Order has been successfully created with the following details: 
-            Order ID: ${order._id}
-            Total Amount: ${totalAmount}
-            Shipping Address: ${address}
-            We will notify you once your order is shipped.
-            Best regards,
-            Netra Team`
 
-            await sendEmail(req.user.email, "Order created!", message)
-            res.status(201).json({message: "Order created successfully", order})
+try {
+    const message = `Dear ${req.user.name},
+
+Thank you for your order!
+
+Order ID: ${order._id}
+Total Amount: ${totalAmount}
+
+Best regards,
+Netra Team`;
+
+    await sendEmail(req.user.email, "Order created!", message);
+} catch (err) {
+    console.error("Email failed:", err);
+}
+
+res.status(201).json({
+    message: "Order created successfully",
+    order
+});
         }
     } catch (error) {
         console.error('Error creating order:', error)
